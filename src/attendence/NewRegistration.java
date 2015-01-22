@@ -4,6 +4,10 @@
  */
 package attendence;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author admin
@@ -99,6 +103,11 @@ public class NewRegistration extends javax.swing.JFrame {
         });
 
         regButton.setText("Register");
+        regButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regButtonActionPerformed(evt);
+            }
+        });
 
         BackToHome.setText("BACK");
         BackToHome.addActionListener(new java.awt.event.ActionListener() {
@@ -130,14 +139,12 @@ public class NewRegistration extends javax.swing.JFrame {
                                 .addComponent(regLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(regCreatePass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)
-                                .addComponent(regEmailId, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(regCreatePass)
+                            .addComponent(regEmailId)
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(regProfile, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(regConfirmPass, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE)))))
+                            .addComponent(regProfile, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(regConfirmPass))))
                 .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -212,6 +219,29 @@ public class NewRegistration extends javax.swing.JFrame {
         hp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BackToHomeActionPerformed
+
+    private void regButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtonActionPerformed
+        // TODO add your handling code here:
+        Statement stmt= null;
+        String fn = regFirstName.getText();
+        String ln = regLastName.getText();
+        String eid = regEmailId.getText();
+        String pass = regCreatePass.getPassword().toString();
+        String prof = regProfile.getSelectedItem().toString();
+        String sql = "INSERT INTO register VALUES ("+fn+","+ln+","+","+eid+","+pass+","+prof+");";
+        try {
+            stmt = Connectivity.mydb().createStatement();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_regButtonActionPerformed
 
     /**
      * @param args the command line arguments
