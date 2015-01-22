@@ -226,21 +226,17 @@ public class NewRegistration extends javax.swing.JFrame {
         String fn = regFirstName.getText();
         String ln = regLastName.getText();
         String eid = regEmailId.getText();
-        String pass = regCreatePass.getPassword().toString();
+        String pass = regCreatePass.getText();
         String prof = regProfile.getSelectedItem().toString();
-        String sql = "INSERT INTO register VALUES ("+fn+","+ln+","+","+eid+","+pass+","+prof+");";
+        
+        String sql = "INSERT INTO register VALUES ("+fn+","+ln+","+","+eid+","+pass+","+prof+")";
         try {
             stmt = Connectivity.mydb().createStatement();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
+        
             stmt.executeUpdate(sql);
-        } catch (SQLException ex) {
+        }  catch (SQLException ex) {
             Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }//GEN-LAST:event_regButtonActionPerformed
 
     /**
