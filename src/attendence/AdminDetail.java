@@ -31,13 +31,14 @@ public class AdminDetail extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         batchList = new javax.swing.JComboBox();
         takeAttendanceAdmin = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        teacherList = new javax.swing.JComboBox();
-        takeAttendanceStaff = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        attTeacher = new javax.swing.JButton();
+        assignBatch = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         adminTitle.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        adminTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         adminTitle.setText("Admin");
 
         logoutAdmin.setText("Logout");
@@ -46,38 +47,35 @@ public class AdminDetail extends javax.swing.JFrame {
         jLabel4.setText("Take Attendance of  ");
 
         batchList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher's", "Follower's", "Innovater's", "Transformer's", "Ascender's" }));
+        batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher", "Follower", "Innovater", "Transformer", "Ascender" }));
 
         takeAttendanceAdmin.setText("Take Attendance");
 
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        jLabel5.setText("Take Attendance of  ");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel1.setText("Take attendance of Teachers");
 
-        teacherList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        teacherList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ashma", "Faraz", "Fahmida", "Maithli" }));
+        attTeacher.setText("Take attendance T");
 
-        takeAttendanceStaff.setText("Take Attendance");
+        assignBatch.setText("Assign students batch");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(takeAttendanceAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(takeAttendanceStaff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(teacherList, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(4, 4, 4)
+                        .addComponent(attTeacher, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(adminTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignBatch)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(takeAttendanceAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(batchList, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(adminTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(65, 65, 65)
+                        .addComponent(batchList, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(logoutAdmin)
                 .addContainerGap())
@@ -93,18 +91,18 @@ public class AdminDetail extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addComponent(adminTitle)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(batchList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(27, 27, 27)
                 .addComponent(takeAttendanceAdmin)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(teacherList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
                 .addGap(27, 27, 27)
-                .addComponent(takeAttendanceStaff)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(attTeacher))
+                .addGap(18, 18, 18)
+                .addComponent(assignBatch)
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,12 +144,12 @@ public class AdminDetail extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel adminTitle;
+    private javax.swing.JButton assignBatch;
+    private javax.swing.JButton attTeacher;
     private javax.swing.JComboBox batchList;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JButton logoutAdmin;
     private javax.swing.JButton takeAttendanceAdmin;
-    private javax.swing.JButton takeAttendanceStaff;
-    private javax.swing.JComboBox teacherList;
     // End of variables declaration//GEN-END:variables
 }

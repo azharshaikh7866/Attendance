@@ -6,6 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -22,26 +23,22 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="70" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="takeAttendanceStaff" alignment="0" max="32767" attributes="0"/>
-                          <Component id="teacherList" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                      </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="85" pref="85" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="takeAttendanceAdmin" alignment="2" max="32767" attributes="0"/>
+                  <Group type="102" alignment="2" attributes="0">
+                      <Component id="jLabel1" min="-2" pref="165" max="-2" attributes="0"/>
+                      <EmptySpace min="4" pref="4" max="4" attributes="0"/>
+                      <Component id="attTeacher" min="-2" pref="137" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Component id="adminTitle" alignment="2" min="-2" pref="171" max="-2" attributes="0"/>
+                  <Component id="assignBatch" alignment="2" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="2" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="takeAttendanceAdmin" alignment="0" max="32767" attributes="0"/>
-                          <Component id="batchList" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="65" pref="65" max="65" attributes="0"/>
+                      <Component id="batchList" min="-2" pref="122" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="adminTitle" min="-2" pref="171" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="logoutAdmin" min="-2" max="-2" attributes="0"/>
@@ -63,20 +60,20 @@
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="batchList" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="batchList" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="takeAttendanceAdmin" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="teacherList" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="takeAttendanceStaff" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="attTeacher" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="assignBatch" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="148" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +84,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Times New Roman" size="24" style="1"/>
         </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Admin"/>
       </Properties>
     </Component>
@@ -110,11 +108,11 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
-            <StringItem index="0" value="Reasercher&apos;s"/>
-            <StringItem index="1" value="Follower&apos;s"/>
-            <StringItem index="2" value="Innovater&apos;s"/>
-            <StringItem index="3" value="Transformer&apos;s"/>
-            <StringItem index="4" value="Ascender&apos;s"/>
+            <StringItem index="0" value="Reasercher"/>
+            <StringItem index="1" value="Follower"/>
+            <StringItem index="2" value="Innovater"/>
+            <StringItem index="3" value="Transformer"/>
+            <StringItem index="4" value="Ascender"/>
           </StringArray>
         </Property>
       </Properties>
@@ -124,32 +122,22 @@
         <Property name="text" type="java.lang.String" value="Take Attendance"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="14" style="0"/>
+          <Font name="Tahoma" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Take Attendance of  "/>
+        <Property name="text" type="java.lang.String" value="Take attendance of Teachers"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="teacherList">
+    <Component class="javax.swing.JButton" name="attTeacher">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Times New Roman" size="14" style="0"/>
-        </Property>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Ashma"/>
-            <StringItem index="1" value="Faraz"/>
-            <StringItem index="2" value="Fahmida"/>
-            <StringItem index="3" value="Maithli"/>
-          </StringArray>
-        </Property>
+        <Property name="text" type="java.lang.String" value="Take attendance T"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="takeAttendanceStaff">
+    <Component class="javax.swing.JButton" name="assignBatch">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Take Attendance"/>
+        <Property name="text" type="java.lang.String" value="Assign students batch"/>
       </Properties>
     </Component>
   </SubComponents>

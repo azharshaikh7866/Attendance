@@ -219,22 +219,65 @@ public class NewRegistration extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (regConfirmPass.getText().equals(regCreatePass.getText()))
         {Statement stmt= null;
-        
-        
+        Boolean b = false;
+        String sql = null;
         String fn = regFirstName.getText();
         String ln = regLastName.getText();
         String eid = regEmailId.getText();
         String pass = regCreatePass.getText();
         String prof = regProfile.getSelectedItem().toString();
-        
-        String sql = "INSERT INTO attendance.register VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"','"+prof+"')";
-        try {
+        if (prof.equals("Student")){
+            try {
+                sql="SELECT Email FROM attendance.student";
+                stmt = Connectivity.mydb().createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                while(rs.next()){
+                    if(eid.equals(rs.getString("Email"))){b=true;}
+                }
+                if(!b){sql= "INSERT INTO attendance.student VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"')";
+                 try {
             stmt = Connectivity.mydb().createStatement();
-        
             stmt.executeUpdate(sql);
+            regFirstName.setText("");
+        regLastName.setText("");
+        regEmailId.setText("");
+        regCreatePass.setText("");
+        regConfirmPass.setText("");
         }  catch (SQLException ex) {
             Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        } }else{showMessageDialog(null, "please confirm your password");}
+        } }
+                else{showMessageDialog(null, "Email already exists in database");}
+            } catch (SQLException ex) {
+                Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            try {
+                sql="SELECT Email FROM attendance.teacher";
+                stmt = Connectivity.mydb().createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                while(rs.next()){
+                    if(eid.equals(rs.getString("Email"))){b=true;}
+                }
+                if(!b){sql="INSERT INTO attendance.teacher VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"')";
+                 try {
+            stmt = Connectivity.mydb().createStatement();
+            stmt.executeUpdate(sql);
+            regFirstName.setText("");
+        regLastName.setText("");
+        regEmailId.setText("");
+        regCreatePass.setText("");
+        regConfirmPass.setText("");
+        }  catch (SQLException ex) {
+            Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+        } }
+                else{showMessageDialog(null, "Email already exists in database");}
+            } catch (SQLException ex) {
+                Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
+        
+        }else{showMessageDialog(null, "please confirm your password");}
     }//GEN-LAST:event_regButtonActionPerformed
 
     /**
