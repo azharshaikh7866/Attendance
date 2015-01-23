@@ -4,6 +4,7 @@ package attendence;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 
 public class NewRegistration extends javax.swing.JFrame {
@@ -216,7 +217,8 @@ public class NewRegistration extends javax.swing.JFrame {
 
     private void regButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtonActionPerformed
         // TODO add your handling code here:
-        Statement stmt= null;
+        if (regConfirmPass.getText().equals(regCreatePass.getText()))
+        {Statement stmt= null;
         
         
         String fn = regFirstName.getText();
@@ -232,7 +234,7 @@ public class NewRegistration extends javax.swing.JFrame {
             stmt.executeUpdate(sql);
         }  catch (SQLException ex) {
             Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        } }else{showMessageDialog(null, "please confirm your password");}
     }//GEN-LAST:event_regButtonActionPerformed
 
     /**
