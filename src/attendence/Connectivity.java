@@ -9,12 +9,12 @@ import java.util.logging.Logger;
 
 public class Connectivity {
     
-    public static Connection conn= null;
+    static Connection conn= null;
     
     public static Connection mydb() {
         try{
-        Class.forName("oracle.jdbc.OracleDriver");
-        conn = DriverManager.getConnection("jdbc:oracle:thin:@azhar:1521:XE","system","root");
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://localhost/attendance","root","root");
         
         }
     catch (SQLException ex) {
