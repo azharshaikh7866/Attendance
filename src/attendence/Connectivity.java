@@ -13,12 +13,13 @@ public class Connectivity {
     
     public static Connection mydb() {
         try{
-        Class.forName("com.mysql.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost/attendance","root","root");
+        Class.forName("oracle.jdbc.OracleDriver");
+        conn = DriverManager.getConnection("jdbc:oracle:thin:@azhar:1521:XE","system","root");
         
-        } catch (ClassNotFoundException ex) {
+        }
+    catch (SQLException ex) {
             Logger.getLogger(Connectivity.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(Connectivity.class.getName()).log(Level.SEVERE, null, ex);
         }
         return conn;

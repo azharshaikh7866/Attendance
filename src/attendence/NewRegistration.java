@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package attendence;
 
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author admin
- */
+
 public class NewRegistration extends javax.swing.JFrame {
 
     /**
@@ -223,15 +217,17 @@ public class NewRegistration extends javax.swing.JFrame {
     private void regButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regButtonActionPerformed
         // TODO add your handling code here:
         Statement stmt= null;
+        Connection con;
+        con = Connectivity.mydb();
         String fn = regFirstName.getText();
         String ln = regLastName.getText();
         String eid = regEmailId.getText();
         String pass = regCreatePass.getText();
         String prof = regProfile.getSelectedItem().toString();
         
-        String sql = "INSERT INTO register VALUES ("+fn+","+ln+","+","+eid+","+pass+","+prof+")";
+        String sql = "INSERT INTO register VALUES("+fn+","+ln+","+eid+","+pass+","+prof+")";
         try {
-            stmt = Connectivity.mydb().createStatement();
+            stmt = con.createStatement();
         
             stmt.executeUpdate(sql);
         }  catch (SQLException ex) {
