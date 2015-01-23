@@ -57,6 +57,11 @@ public class AdminDetail extends javax.swing.JFrame {
         attTeacher.setText("Take attendance T");
 
         assignBatch.setText("Assign students batch");
+        assignBatch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBatchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -107,6 +112,14 @@ public class AdminDetail extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void assignBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBatchActionPerformed
+        // TODO add your handling code here:
+        AssignBatch ab = new AssignBatch();
+        ab.setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_assignBatchActionPerformed
 
     /**
      * @param args the command line arguments
