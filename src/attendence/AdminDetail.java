@@ -116,6 +116,7 @@ public class AdminDetail extends javax.swing.JFrame {
     private void assignBatchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBatchActionPerformed
         // TODO add your handling code here:
         AssignBatch ab = new AssignBatch();
+        ab.getStudentList();
         ab.setVisible(true);
         this.setVisible(false);
         

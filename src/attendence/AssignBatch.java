@@ -5,6 +5,12 @@
  */
 package attendence;
 
+import java.sql.*;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author azharshaikh7866
@@ -17,8 +23,19 @@ public class AssignBatch extends javax.swing.JFrame {
     public AssignBatch() {
         initComponents();
     }
-    public void getStudentList(String s){
-              
+    public void getStudentList(){
+        try {
+            DefaultTableModel model = (DefaultTableModel)studentList.getModel();
+            Statement stmt= null;
+            stmt = Connectivity.mydb().createStatement();
+            String sql = "SELECT Fname FROM student";
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("Fname")});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -38,14 +55,11 @@ public class AssignBatch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Select Batch from here :");
+        jLabel1.setText("Enter Batch Name here :");
 
         studentList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Name", "Select"
@@ -79,7 +93,7 @@ public class AssignBatch extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(batchList, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
