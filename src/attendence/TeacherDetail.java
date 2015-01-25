@@ -58,6 +58,11 @@ public class TeacherDetail extends javax.swing.JFrame {
         jLabel4.setText("Take Attendance of  ");
 
         takeAttendanceTeacher.setText("Take Attendance");
+        takeAttendanceTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                takeAttendanceTeacherActionPerformed(evt);
+            }
+        });
 
         leaveButtonTeacher.setText("Apply for leave");
 
@@ -153,6 +158,16 @@ public class TeacherDetail extends javax.swing.JFrame {
         leaveTxtFieldTeacher.setText(" ");
 
     }//GEN-LAST:event_leaveTxtFieldTeacherMouseClicked
+
+    private void takeAttendanceTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeAttendanceTeacherActionPerformed
+        // TODO add your handling code here:
+        String s;
+        StudentAttendance sa = new StudentAttendance();
+        s=batchList.getSelectedItem().toString();
+        sa.getAttendanceList(s);
+        sa.setVisible(true);
+        
+    }//GEN-LAST:event_takeAttendanceTeacherActionPerformed
 
     /**
      * @param args the command line arguments

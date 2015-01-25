@@ -5,6 +5,11 @@
  */
 package attendence;
 
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author azharshaikh7866
@@ -17,7 +22,22 @@ public class StudentAttendance extends javax.swing.JFrame {
     public StudentAttendance() {
         initComponents();
     }
-
+    
+    public void getAttendanceList(String s){
+        DefaultTableModel model = (DefaultTableModel)attendanceTable.getModel();
+        Statement stmt= null;
+        try {
+            stmt = Connectivity.mydb().createStatement();
+            String sql = "SELECT Fname FROM student WHERE Batch = '"+s+"';";
+        ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()){
+                model.addRow(new Object[]{rs.getString("Fname"),Boolean.FALSE});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
