@@ -28,7 +28,7 @@ public class AssignBatch extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel)studentList.getModel();
             Statement stmt= null;
             stmt = Connectivity.mydb().createStatement();
-            String sql = "SELECT Fname FROM student";
+            String sql = "SELECT Fname FROM student WHERE Batch = ''";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("Fname")});
