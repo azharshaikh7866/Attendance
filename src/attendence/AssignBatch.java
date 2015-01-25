@@ -31,7 +31,7 @@ public class AssignBatch extends javax.swing.JFrame {
             String sql = "SELECT Fname FROM student WHERE Batch = ''";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
-                model.addRow(new Object[]{rs.getString("Fname")});
+                model.addRow(new Object[]{rs.getString("Fname"),Boolean.FALSE});
             }
         } catch (SQLException ex) {
             Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,6 +76,11 @@ public class AssignBatch extends javax.swing.JFrame {
         jScrollPane1.setViewportView(studentList);
 
         jButton1.setText("Add to Batch");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         batchList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher", "Follower", "Innovater", "Transformer", "Ascender" }));
@@ -111,6 +116,41 @@ public class AssignBatch extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int count = studentList.getRowCount();
+        boolean[] b=new boolean[count]; 
+        String[] name = new String[count];
+        String sql="";
+        Statement stmt = null;
+        try {
+            stmt = Connectivity.mydb().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for(int i=0;i<count;i++){
+            b[i]=(boolean) studentList.getValueAt(i, 1);            
+            if(b[i])
+           {
+            name[i]=(String) studentList.getValueAt(i, 0);
+            sql="update student set Batch='"+batchList.getSelectedItem().toString()+"' where fname='"+name[i]+"';";
+                try {
+                    stmt.executeUpdate(sql);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+           }
+        }this.setVisible(false);
+        AdminDetail ad = new AdminDetail();
+        ad.setVisible(true);
+        //code to remove row
+//        DefaultTableModel up = (DefaultTableModel)studentList.getModel();
+//        for(int j=0;j<=count;j++){
+//            if(b[j]){up.removeRow(j);}
+//        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
