@@ -52,7 +52,7 @@ public class TeacherDetail extends javax.swing.JFrame {
         teacherPercent.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
 
         batchList.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
-        batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher's", "Follower's", "Innovater's", "Transformer's", "Ascender's" }));
+        batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher", "Follower", "Innovater", "Transformer", "Ascender" }));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Take Attendance of  ");
@@ -145,7 +145,7 @@ public class TeacherDetail extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(leaveButtonTeacher)
                 .addContainerGap())
         );

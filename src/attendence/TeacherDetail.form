@@ -106,7 +106,7 @@
                   <Component id="jLabel5" alignment="0" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="61" max="32767" attributes="0"/>
               <Component id="leaveButtonTeacher" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -151,11 +151,11 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="5">
-            <StringItem index="0" value="Reasercher&apos;s"/>
-            <StringItem index="1" value="Follower&apos;s"/>
-            <StringItem index="2" value="Innovater&apos;s"/>
-            <StringItem index="3" value="Transformer&apos;s"/>
-            <StringItem index="4" value="Ascender&apos;s"/>
+            <StringItem index="0" value="Reasercher"/>
+            <StringItem index="1" value="Follower"/>
+            <StringItem index="2" value="Innovater"/>
+            <StringItem index="3" value="Transformer"/>
+            <StringItem index="4" value="Ascender"/>
           </StringArray>
         </Property>
       </Properties>

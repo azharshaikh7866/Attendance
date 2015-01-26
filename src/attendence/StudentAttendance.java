@@ -29,7 +29,7 @@ public class StudentAttendance extends javax.swing.JFrame {
         try {
             stmt = Connectivity.mydb().createStatement();
             String sql = "SELECT Fname FROM student WHERE Batch = '"+s+"';";
-        ResultSet rs = stmt.executeQuery(sql);
+            ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("Fname"),Boolean.FALSE});
             }
@@ -59,26 +59,7 @@ public class StudentAttendance extends javax.swing.JFrame {
 
         attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Name of student", "Check if present"
