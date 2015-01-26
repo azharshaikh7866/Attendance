@@ -76,6 +76,11 @@ public class StudentAttendance extends javax.swing.JFrame {
         jScrollPane1.setViewportView(attendanceTable);
 
         submitStudentAttendance.setText("Submit");
+        submitStudentAttendance.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitStudentAttendanceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +108,11 @@ public class StudentAttendance extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submitStudentAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStudentAttendanceActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_submitStudentAttendanceActionPerformed
 
     /**
      * @param args the command line arguments

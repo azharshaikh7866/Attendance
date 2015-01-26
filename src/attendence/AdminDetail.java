@@ -50,6 +50,11 @@ public class AdminDetail extends javax.swing.JFrame {
         batchList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Reasercher", "Follower", "Innovater", "Transformer", "Ascender" }));
 
         takeAttendanceAdmin.setText("Take Attendance");
+        takeAttendanceAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                takeAttendanceAdminActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Take attendance of Teachers");
@@ -121,6 +126,14 @@ public class AdminDetail extends javax.swing.JFrame {
         this.setVisible(false);
         
     }//GEN-LAST:event_assignBatchActionPerformed
+
+    private void takeAttendanceAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_takeAttendanceAdminActionPerformed
+        // TODO add your handling code here:
+        StudentAttendance sa = new StudentAttendance();
+        String s=batchList.getSelectedItem().toString();
+        sa.getAttendanceList(s);
+        sa.setVisible(true);
+    }//GEN-LAST:event_takeAttendanceAdminActionPerformed
 
     /**
      * @param args the command line arguments
