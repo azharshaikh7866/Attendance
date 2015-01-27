@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package attendence;
-
+import java.text.*;
+import java.util.Date;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -110,7 +111,84 @@ public class StudentAttendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitStudentAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStudentAttendanceActionPerformed
-        // TODO add your handling code here:
+        int count = attendanceTable.getRowCount();
+        int overall_outof=0;
+        int month_outof=0;
+        String sql="";
+        Statement stmt = null;
+        Date dt = new Date();
+        SimpleDateFormat ft = new SimpleDateFormat("dd");
+        try {
+            stmt = Connectivity.mydb().createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        int a=1;
+       // a=Integer.parseInt(ft.format(dt));
+        if(a==1){
+        sql="UPDATE student SET month=0+month_outof=0";
+        try {
+            stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        sql="select overall_outof,month_outof from attendance.student";
+        try {
+            
+            ResultSet ls = stmt.executeQuery(sql);
+            while(ls.next()){
+            overall_outof = ls.getInt("overall_outof")+1;
+            
+            month_outof= ls.getInt("month_outof")+1;
+            
+            }
+            sql="UPDATE student SET overall_outof="+overall_outof+",month_outof="+month_outof;
+            stmt.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+         
+        boolean[] b=new boolean[count]; 
+        String[] name = new String[count];
+        
+        
+//        try {
+//            stmt = Connectivity.mydb().createStatement();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        for(int i=0;i<count;i++){
+            b[i]=(boolean) attendanceTable.getValueAt(i, 1); 
+            System.out.println(b[i]);
+            if(b[i])
+           {
+            name[i]=(String) attendanceTable.getValueAt(i, 0);
+               System.out.println(name[i]);
+            sql="select attend,month from student  where fname='"+name[i]+"'";
+            int attend=0;
+            
+            int month=0;
+           
+                try {
+                    ResultSet rs = stmt.executeQuery(sql);
+                    while(rs.next()){
+                        attend=rs.getInt("attend")+1;
+                     
+                        month=rs.getInt("month")+1;
+                        
+                    }
+                    System.out.println(attend);
+                    sql="UPDATE attendance.student SET attend="+attend+",month="+month+" WHERE fname='"+name[i]+"'";
+                    stmt.executeUpdate(sql);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+           }
+        }
         
     }//GEN-LAST:event_submitStudentAttendanceActionPerformed
 
