@@ -123,10 +123,10 @@ public class StudentAttendance extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int a=1;
-       // a=Integer.parseInt(ft.format(dt));
+        int a;
+        a=Integer.parseInt(ft.format(dt));
         if(a==1){
-        sql="UPDATE student SET month=0+month_outof=0";
+        sql="UPDATE student SET month=0,month_outof=0";
         try {
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {

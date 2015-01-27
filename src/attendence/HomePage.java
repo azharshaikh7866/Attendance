@@ -5,6 +5,10 @@
  */
 package attendence;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author azharshaikh7866
@@ -123,6 +127,11 @@ public class HomePage extends javax.swing.JFrame {
     private void newRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newRegistrationActionPerformed
         // TODO add your handling code here:
         NewRegistration nr = new NewRegistration();
+        try {
+            nr.rollText();
+        } catch (SQLException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         nr.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_newRegistrationActionPerformed
