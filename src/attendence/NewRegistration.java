@@ -252,15 +252,14 @@ public class NewRegistration extends javax.swing.JFrame {
                 while(rs.next()){
                     if(eid.equals(rs.getString("Email"))){b=true;}
                 }
-                if(!b){sql= "INSERT INTO attendance.student VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"','','0','0','0','0')";
+                if(!b){sql= "INSERT INTO attendance.student VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"','','0','0','0','0','"+rollNo.getText()+"')";
                  try {
             stmt = Connectivity.mydb().createStatement();
             stmt.executeUpdate(sql);
-            regFirstName.setText("");
-        regLastName.setText("");
-        regEmailId.setText("");
-        regCreatePass.setText("");
-        regConfirmPass.setText("");
+            this.setVisible(false);
+            HomePage hp = new HomePage();
+            hp.setVisible(true);
+         
         }  catch (SQLException ex) {
             Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
         } }
@@ -268,6 +267,7 @@ public class NewRegistration extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(NewRegistration.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
         }else{
             try {
                 sql="SELECT Email FROM attendance.teacher";
