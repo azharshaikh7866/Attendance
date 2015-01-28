@@ -4,6 +4,13 @@
  */
 package attendence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author admin
@@ -56,6 +63,11 @@ public class AdminLogin extends javax.swing.JFrame {
         adminUsername.setText("Username :");
 
         adminLoginbutton.setText("LOGIN");
+        adminLoginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminLoginbuttonActionPerformed(evt);
+            }
+        });
 
         BackToHome.setText("BACK");
         BackToHome.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +139,24 @@ public class AdminLogin extends javax.swing.JFrame {
     private void adminLoginUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginUsernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_adminLoginUsernameActionPerformed
+
+    private void adminLoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginbuttonActionPerformed
+         try {
+            String sql="SELECT Password from attendance.student WHERE EMail='"+adminLoginUsername.getText()+"'";
+            Statement stmt=null;
+            stmt=Connectivity.mydb().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            if(adminLoginPassword.getText().equals(rs.getString("Password"))){
+                AdminDetail ad = new AdminDetail();
+                ad.setVisible(true);
+                this.setVisible(false);
+            }else{showMessageDialog(null, "your Username and Password do not match!!!");}
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentLogin.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }//GEN-LAST:event_adminLoginbuttonActionPerformed
 
     /**
      * @param args the command line arguments

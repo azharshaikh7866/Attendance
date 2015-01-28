@@ -276,7 +276,7 @@ public class NewRegistration extends javax.swing.JFrame {
                 while(rs.next()){
                     if(eid.equals(rs.getString("Email"))){b=true;}
                 }
-                if(!b){sql="INSERT INTO attendance.teacher VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"')";
+                if(!b){sql="INSERT INTO attendance.teacher VALUES('"+fn+"','"+ln+"','"+eid+"','"+pass+"','0','0')";
                  try {
             stmt = Connectivity.mydb().createStatement();
             stmt.executeUpdate(sql);

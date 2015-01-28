@@ -4,6 +4,12 @@
  */
 package attendence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author admin
@@ -15,6 +21,24 @@ public class TeacherDetail extends javax.swing.JFrame {
      */
     public TeacherDetail() {
         initComponents();
+    }
+    public void setPercent(String s){
+        try {
+            String sql="SELECT Attend,overall_outof from attendance.teacher WHERE EMail='"+s+"'";
+            Statement stmt=null;
+            stmt=Connectivity.mydb().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            float a=0; 
+            float b=0;
+            rs.next();
+            a=rs.getInt("Attend");
+            b=rs.getInt("overall_outof");
+            Float c = (a/b)*100;
+            teacherPercent.setText(c.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDetail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     /**
