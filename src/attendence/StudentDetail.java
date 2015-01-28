@@ -28,12 +28,12 @@ public class StudentDetail extends javax.swing.JFrame {
             Statement stmt=null;
             stmt=Connectivity.mydb().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
-            Integer a = new Integer(0);
-            int b=0;
+            float a=0; 
+            float b=0;
             rs.next();
             a=rs.getInt("Attend");
             b=rs.getInt("overall_outof");
-            Integer c = new Integer((a/b)*100);
+            Float c = (a/b)*100;
             attendancePercent.setText(c.toString());
         } catch (SQLException ex) {
             Logger.getLogger(StudentDetail.class.getName()).log(Level.SEVERE, null, ex);

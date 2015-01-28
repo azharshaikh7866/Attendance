@@ -4,6 +4,13 @@
  */
 package attendence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import static javax.swing.JOptionPane.showMessageDialog;
+
 /**
  *
  * @author admin
@@ -51,6 +58,11 @@ public class StudentLogin extends javax.swing.JFrame {
         });
 
         studentLoginbutton.setText("LOGIN");
+        studentLoginbutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentLoginbuttonActionPerformed(evt);
+            }
+        });
 
         BackToHome.setText("BACK");
         BackToHome.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +130,25 @@ public class StudentLogin extends javax.swing.JFrame {
         hp.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BackToHomeActionPerformed
+
+    private void studentLoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLoginbuttonActionPerformed
+        try {
+            String sql="SELECT Password from attendance.student WHERE EMail='"+studentLoginUsername.getText()+"'";
+            Statement stmt=null;
+            stmt=Connectivity.mydb().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            rs.next();
+            if(studentLoginPassword.getText().equals(rs.getString("Password"))){
+                StudentDetail sd = new StudentDetail();
+                sd.setPercent(studentLoginUsername.getText());
+                sd.setVisible(true);
+                this.setVisible(false);
+            }else{showMessageDialog(null, "your Username and Password do not match!!!");}
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentLogin.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }//GEN-LAST:event_studentLoginbuttonActionPerformed
 
     /**
      * @param args the command line arguments
