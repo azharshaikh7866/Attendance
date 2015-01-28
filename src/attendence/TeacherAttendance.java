@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package attendence;
-import java.text.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -15,21 +18,20 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author azharshaikh7866
  */
-public class StudentAttendance extends javax.swing.JFrame {
+public class TeacherAttendance extends javax.swing.JFrame {
 
     /**
-     * Creates new form StudentAttendance
+     * Creates new form TeacherAttendance
      */
-    public StudentAttendance() {
+    public TeacherAttendance() {
         initComponents();
     }
-    
-    public void getAttendanceList(String s){
+    public void getAttendanceList(){
         DefaultTableModel model = (DefaultTableModel)attendanceTable.getModel();
         Statement stmt= null;
         try {
             stmt = Connectivity.mydb().createStatement();
-            String sql = "SELECT Fname FROM student WHERE Batch = '"+s+"';";
+            String sql = "SELECT Fname FROM attendance.teacher ";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()){
                 model.addRow(new Object[]{rs.getString("Fname"),Boolean.FALSE});
@@ -39,6 +41,7 @@ public class StudentAttendance extends javax.swing.JFrame {
         }
         
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,22 +51,22 @@ public class StudentAttendance extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        batchName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         attendanceTable = new javax.swing.JTable();
-        submitStudentAttendance = new javax.swing.JButton();
+        submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        batchName.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        batchName.setText("Batch Name");
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel1.setText("Teacher Attendance");
 
         attendanceTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name of student", "Check if present"
+                "Name", "Check if present"
             }
         ) {
             Class[] types = new Class [] {
@@ -76,10 +79,10 @@ public class StudentAttendance extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(attendanceTable);
 
-        submitStudentAttendance.setText("Submit");
-        submitStudentAttendance.addActionListener(new java.awt.event.ActionListener() {
+        submit.setText("Submit");
+        submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitStudentAttendanceActionPerformed(evt);
+                submitActionPerformed(evt);
             }
         });
 
@@ -88,62 +91,47 @@ public class StudentAttendance extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(submitStudentAttendance)
+                    .addComponent(jLabel1)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(batchName))
-                .addContainerGap())
+                    .addComponent(submit))
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(batchName)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(submitStudentAttendance)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(submit)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void submitStudentAttendanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitStudentAttendanceActionPerformed
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
         int count = attendanceTable.getRowCount();
-        int overall_outof=0;
-        int month_outof=0;
+        int overall_outof=0;        
         String sql="";
         Statement stmt = null;
-        Date dt = new Date();
-        SimpleDateFormat ft = new SimpleDateFormat("dd");
+        
         try {
             stmt = Connectivity.mydb().createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int a;
-        a=Integer.parseInt(ft.format(dt));
-        if(a==1){
-        sql="UPDATE student SET month=0,month_outof=0";
-        try {
-            stmt.executeUpdate(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        }
-        sql="select overall_outof,month_outof from attendance.student";
+        sql="select overall_outof from attendance.teacher";
         try {
             
             ResultSet ls = stmt.executeQuery(sql);
             while(ls.next()){
-            overall_outof = ls.getInt("overall_outof")+1;
-            
-            month_outof= ls.getInt("month_outof")+1;
-            
+            overall_outof = ls.getInt("overall_outof")+1;           
             }
-            sql="UPDATE student SET overall_outof="+overall_outof+",month_outof="+month_outof;
+            sql="UPDATE attendance.teacher SET overall_outof="+overall_outof;
             stmt.executeUpdate(sql);
         } catch (SQLException ex) {
             Logger.getLogger(StudentAttendance.class.getName()).log(Level.SEVERE, null, ex);
@@ -155,16 +143,15 @@ public class StudentAttendance extends javax.swing.JFrame {
             if(b[i])
            {
             name[i]=(String) attendanceTable.getValueAt(i, 0);              
-            sql="select attend,month from student  where fname='"+name[i]+"'";
-            int attend=0;            
-            int month=0;           
+            sql="select attend from attendance.teacher where fname='"+name[i]+"'";
+            int attend=0;           
                 try {
                     ResultSet rs = stmt.executeQuery(sql);
                     while(rs.next()){
                         attend=rs.getInt("attend")+1;                     
-                        month=rs.getInt("month")+1;                        
+                                               
                     }                   
-                    sql="UPDATE attendance.student SET attend="+attend+",month="+month+" WHERE fname='"+name[i]+"'";
+                    sql="UPDATE attendance.teacher SET attend="+attend+" WHERE fname='"+name[i]+"'";
                     stmt.executeUpdate(sql);
                 } catch (SQLException ex) {
                     Logger.getLogger(AssignBatch.class.getName()).log(Level.SEVERE, null, ex);
@@ -172,8 +159,7 @@ public class StudentAttendance extends javax.swing.JFrame {
                 
            }
         }
-        
-    }//GEN-LAST:event_submitStudentAttendanceActionPerformed
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,28 +178,28 @@ public class StudentAttendance extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TeacherAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TeacherAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TeacherAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TeacherAttendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentAttendance().setVisible(true);
+                new TeacherAttendance().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable attendanceTable;
-    private javax.swing.JLabel batchName;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton submitStudentAttendance;
+    private javax.swing.JButton submit;
     // End of variables declaration//GEN-END:variables
 }

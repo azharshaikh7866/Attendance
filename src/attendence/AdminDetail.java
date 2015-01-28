@@ -60,6 +60,11 @@ public class AdminDetail extends javax.swing.JFrame {
         jLabel1.setText("Take attendance of Teachers");
 
         attTeacher.setText("Take attendance T");
+        attTeacher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attTeacherActionPerformed(evt);
+            }
+        });
 
         assignBatch.setText("Assign students batch");
         assignBatch.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +139,13 @@ public class AdminDetail extends javax.swing.JFrame {
         sa.getAttendanceList(s);
         sa.setVisible(true);
     }//GEN-LAST:event_takeAttendanceAdminActionPerformed
+
+    private void attTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attTeacherActionPerformed
+        TeacherAttendance ta = new TeacherAttendance();
+        ta.getAttendanceList();
+        ta.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_attTeacherActionPerformed
 
     /**
      * @param args the command line arguments
