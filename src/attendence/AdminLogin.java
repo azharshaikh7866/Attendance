@@ -142,7 +142,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void adminLoginbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLoginbuttonActionPerformed
          try {
-            String sql="SELECT Password from attendance.admin WHERE EMail='"+adminLoginUsername.getText()+"'";
+            String sql="SELECT * from attendance.admin WHERE Email='"+adminLoginUsername.getText()+"'";
             Statement stmt=null;
             stmt=Connectivity.mydb().createStatement();
             ResultSet rs = stmt.executeQuery(sql);
