@@ -4,6 +4,12 @@
  */
 package attendence;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author admin
@@ -16,7 +22,24 @@ public class StudentDetail extends javax.swing.JFrame {
     public StudentDetail() {
         initComponents();
     }
-
+    public void setPercent(String s){
+        try {
+            String sql="SELECT Attend,overall_outof from attendance.student WHERE EMail='"+s+"'";
+            Statement stmt=null;
+            stmt=Connectivity.mydb().createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            Integer a = new Integer(0);
+            int b=0;
+            rs.next();
+            a=rs.getInt("Attend");
+            b=rs.getInt("overall_outof");
+            Integer c = new Integer((a/b)*100);
+            attendancePercent.setText(c.toString());
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDetail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
